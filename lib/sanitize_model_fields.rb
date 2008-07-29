@@ -4,7 +4,6 @@ module SanitizeModelFields
   module SanitizeInstanceMethods
     def sanitize_field_values
       self.class.skip_sanitize_fields ||= []
-
       self.attributes.each do |attr, value|
         if value.is_a?(String) && !self.class.skip_sanitize_fields.include?(attr)
           self.send(attr + "=", sanitize(value))
