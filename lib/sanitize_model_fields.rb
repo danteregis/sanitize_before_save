@@ -16,7 +16,7 @@ module SanitizeModelFields
     # If we don't want a specific field to be sanitized before being saved on
     # the database, we use this function with a list of fields as an array.
     # for example:
-    # class Person << ActiveRecord::Base
+    # class Person < ActiveRecord::Base
     #   sanitize_before_save :except => [:name, :memo] 
     # end
     def sanitize_before_save(args = {})

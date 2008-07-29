@@ -5,6 +5,10 @@ ActiveRecord::Base.logger = Logger.new(plugin_spec_dir + "/debug.log")
 
 load(File.dirname(__FILE__) + '/schema.rb')
 
-class ModelToSanitize < ActiveRecord::Base
+class SanitizeModel < ActiveRecord::Base
   sanitize_before_save
+end
+
+class SanitizeWithExceptOptionModel < ActiveRecord::Base
+  sanitize_before_save :except => :description
 end

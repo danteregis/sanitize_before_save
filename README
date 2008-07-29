@@ -1,13 +1,33 @@
-SanitizeModelFields
-===================
+Sanitize Before Save
+====================
 
-Introduction goes here.
+'Sanitize Before Save' is a Ruby on Rails plugin.
+It Allows you to specify models that will always sanitize content before saving it to the database.
 
 
 Example
 =======
 
-Example goes here.
+Just put the following line ('sanitize_before_save') in your model : 
+
+class Person < ActiveRecord::Base
+  sanitize_before_save
+end
+
+and automaticaly all your model data stored in database as a String value will be sanitized before they will be saved (or updated).
+
+@person = Person.create(:name => %(Mathieu Fosse<script type="text/javascript">alert('Hello !');</script>))
+@person.name == "Mathieu Fosse"
+
+
+Optionnaly you can add an except option to disabled sanitize process in some fields like that :
+
+class Person < ActiveRecord::Base
+  sanitize_before_save :except => :name
+end
+
+With this option, all Person model fields will be sanitized before they will be saved except for 'name' field. 
+
 
 
 Copyright (c) 2008 Dante S. Regis, released under the MIT license
