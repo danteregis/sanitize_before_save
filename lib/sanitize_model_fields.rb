@@ -29,6 +29,7 @@ module SanitizeModelFields
         end
       end
       include ActionView::Helpers::SanitizeHelper
+      extend ActionView::Helpers::SanitizeHelper::ClassMethods
       include SanitizeModelFields::SanitizeInstanceMethods
       before_validation :sanitize_field_values
     end
